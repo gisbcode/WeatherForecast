@@ -127,9 +127,11 @@ main {
 
 .forecast-temperature-max {
   padding: 0 15px;
+  font-weight: 700;
 }
 .forecast-temperature-min {
   padding: 0 15px;
+  font-weight: 400;
 }
 
 footer {

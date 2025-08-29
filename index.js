@@ -57,6 +57,12 @@ function search(event) {
   axios.get(apiUrl).then(displayTemperature); // ✅ fixed
 }
 
+function searchCity(city) {
+  let apiKey = "b2a5adcct04b33178913oc335f405433";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 
@@ -65,12 +71,11 @@ let currentDateElement = document.querySelector("#current-date");
 let currentDate = new Date();
 currentDateElement.innerHTML = formatDate(currentDate);
 
-function getForecast(day) {
+function getForecast(city) {
   let apiKey = "39a3014fd34afe90bc14c4tc7oed280d";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
-  axios(apiUrl).then(displayForecast);
+  axios.get(apiUrl).then(displayForecast);
 }
-
 function displayForecast(response) {
   console.log(response.data);
 
@@ -82,7 +87,7 @@ function displayForecast(response) {
         <div class="forecast-date">${day}</div>
         <div class="forecast-icon">🌤️</div>
         <div class="forecast-temperatures">
-          <span class="forecast-temperature-max"> 18° </span>
+          <span class="forecast-temperature-max"> 18°</span>
           <span class="forecast-temperature-min"> 12° </span>
         </div>
       </div>
