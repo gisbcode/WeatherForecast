@@ -63,6 +63,16 @@ let currentDateElement = document.querySelector("#current-date");
 let currentDate = new Date();
 currentDateElement.innerHTML = formatDate(currentDate);
 
+
+function getForecast(day) {
+
+  let apiKey = "39a3014fd34afe90bc14c4tc7oed280d";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  console.log(apiUrl);
+ 
+}
+
+
 function displayForecast() {
   let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
   let forecastHtml = "";
@@ -70,10 +80,10 @@ function displayForecast() {
     forecastHtml += `
       <div class="forecast-day">
         <div class="forecast-date">${day}</div>
-        <img src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png" alt="" width="42"/>
-        <div class="weather-forecast-temperatures">
-          <span class="weather-forecast-temperature-max"> 18° </span>
-          <span class="weather-forecast-temperature-min"> 12° </span>
+        <div class="forecast-icon">🌤️</div>
+        <div class="forecast-temperatures">
+          <span class="forecast-temperature-max"> 18° </span>
+          <span class="forecast-temperature-min"> 12° </span>
         </div>
       </div>
     `;
@@ -81,3 +91,7 @@ function displayForecast() {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;
 }
+
+searchCity("Paris");
+getForecast("Paris");
+displayForecast();
