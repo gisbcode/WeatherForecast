@@ -71,6 +71,14 @@ let currentDateElement = document.querySelector("#current-date");
 let currentDate = new Date();
 currentDateElement.innerHTML = formatDate(currentDate);
 
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[date.getDay()];
+}
+
+
 function getForecast(city) {
   let apiKey = "39a3014fd34afe90bc14c4tc7oed280d";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
@@ -79,19 +87,25 @@ function getForecast(city) {
 function displayForecast(response) {
   console.log(response.data);
 
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   let forecastHtml = "";
-  days.forEach(function (day) {
-    forecastHtml += `
+ 
+
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml += `
       <div class="forecast-day">
-        <div class="forecast-date">${day}</div>
-        <div class="forecast-icon">🌤️</div>
+        <div class="forecast-date">${formatDay(day.time)}</div>
+        <img src="${day.condition.icon_url}" class="forecast-icon"/>
+      
         <div class="forecast-temperatures">
-          <span class="forecast-temperature-max"> 18°</span>
+          <span class="forecast-temperature-max"> ${Math.round(
+            day.temperature.maximum
+          )}°</span>
           <span class="forecast-temperature-min"> 12° </span>
         </div>
       </div>
     `;
+    }
   });
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;

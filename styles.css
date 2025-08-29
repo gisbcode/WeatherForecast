@@ -95,6 +95,7 @@ main {
   top: -10px;
 }
 .forecast {
+  justify-content: space-between;
   display: flex;
 
   margin-top: 20px;
@@ -112,7 +113,7 @@ main {
 .forecast-icon {
   text-align: center;
   margin-bottom: 10px;
-  font-size: 38px;
+  
 }
 
 .forecast-temperatures {
