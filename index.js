@@ -66,10 +66,6 @@ function searchCity(city) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 
-// Display current date on page load
-let currentDateElement = document.querySelector("#current-date");
-let currentDate = new Date();
-currentDateElement.innerHTML = formatDate(currentDate);
 
 
 function formatDay(timestamp) {
@@ -112,4 +108,3 @@ function displayForecast(response) {
 }
 
 searchCity("Paris");
-getForecast("Paris");
